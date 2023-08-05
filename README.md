@@ -1,0 +1,2 @@
+# HaemoLink
+ HaemoLink is a cutting-edge React Native project designed to bridge the gap between blood donors, blood donation centers, and blood banks. This innovative software engineering solution aims to streamline the process of blood donation, making it easier for donors to contribute, enabling donation centers to efficiently manage resources, and fostering collaboration with blood banks to ensure a steady and timely supply of blood for those in need.
