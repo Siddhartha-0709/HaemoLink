@@ -6,9 +6,9 @@ import {
   TouchableOpacity,
   StatusBar,
   Image,
-  Pressable
 } from 'react-native';
 import React from 'react';
+import BottomNav from './BottomNav';
 const Home = () => {
   return (
     <SafeAreaView style={styles.background}>
@@ -21,9 +21,9 @@ const Home = () => {
       </View>
       <View style={styles.headingContainer}>
         <Text style={styles.heading}>
-          Hello
+          Hello,
           {'\n'}
-          Siddhartha
+          {'Siddhartha'}
         </Text>
         <View style={styles.imageContainer}>
           <Image
@@ -32,47 +32,50 @@ const Home = () => {
           />
         </View>
       </View>
-      <Text style={styles.email}>@sidd_myself</Text>
-      <Text style={styles.bloodGroup}>
-        Blood Group- O⁺<Text style={{fontSize: 15}}>ve</Text>
-      </Text>
+      <View>
+        <Text style={styles.email}>{'@sidd_myself'}</Text>
+        <Text style={styles.bloodGroup}>
+          🩸{'O⁺ve'} | <Image
+          source={require('../components/assets/age.png')}
+          style={{width:20,height:20}}
+          /> 19+
+          <Text> | <Image
+          source={require('../components/assets/pin.png')}
+          style={{width:20,height:20}}
+          />Kolkata, India</Text>
+        </Text>
+      </View>
       <View>
         <TouchableOpacity style={styles.map}>
           <Image
-          source={require('../components/assets/maps_button.png')}
+          source={require('../components/assets/maps_button1.png')}
           style={{width:372, borderRadius:40,height:160}}
           />
         </TouchableOpacity>
       </View>
       <View style={styles.container}>
-        <TouchableOpacity style={styles.view1}></TouchableOpacity>
-        <TouchableOpacity style={styles.view2}></TouchableOpacity>
+        <TouchableOpacity style={styles.view1}>
+        <Image
+          source={require('../components/assets/find_donor3.png')}
+          style={{width:170, borderRadius:5,height:170,marginLeft:6}}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.view2}>
+        <Image
+          source={require('../components/assets/emergency5.png')}
+          style={{width:170, borderRadius:5,height:170,marginLeft:2}}
+          />
+        </TouchableOpacity>
       </View>
       <View>
         <TouchableOpacity style={styles.camp}>
           <Image
-          source={require('../components/assets/blood_camp.png')}
+          source={require('../components/assets/blood_camp2.png')}
           style={{width:372, borderRadius:5,height:150}}
           />
         </TouchableOpacity>
       </View>
-      <View style={styles.bottomNav}>
-        <Pressable>
-          <Text style={{fontSize:40,marginLeft:10}}>⌂</Text>
-        </Pressable>
-        <Pressable>
-          <Text>H</Text>
-        </Pressable>
-        <Pressable>
-          <Text>H</Text>
-        </Pressable>
-        <Pressable>
-          <Text>H</Text>
-        </Pressable>
-        <Pressable>
-          <Text>H</Text>
-        </Pressable>
-      </View>
+      <BottomNav/>
     </SafeAreaView>
   );
 };
@@ -101,7 +104,7 @@ const styles = StyleSheet.create({
     color: '#000000',
   },
   bloodGroup: {
-    fontSize: 20,
+    fontSize: 18,
     marginLeft: 15,
     marginBottom: 45,
     color: '#30002F',
@@ -138,14 +141,13 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 7,
+    paddingHorizontal: 6,
     maxHeight: 190,
     paddingVertical: 0,
   },
   view1: {
     flex: 1,
     backgroundColor: '#FFFFFF',
-    padding: 10,
     height: 180,
     borderRadius: 8,
     elevation: 8,
@@ -155,7 +157,6 @@ const styles = StyleSheet.create({
   view2: {
     flex: 1,
     backgroundColor: '#FFFFFF',
-    padding: 10,
     height: 180,
     borderRadius: 8,
     marginLeft: 4,
@@ -178,15 +179,5 @@ const styles = StyleSheet.create({
     elevation: 8,
     marginTop: 0,
   },
-  bottomNav:{
-    backgroundColor:'#000000',
-    position: 'absolute', // Set the position to absolute
-    bottom: 0, // Position it at the bottom of the parent container
-    left: 0,   // Align it to the left
-    right: 0,  // Align it to the right
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 7,
-  }
+ 
 });

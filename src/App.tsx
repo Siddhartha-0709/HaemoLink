@@ -5,10 +5,12 @@ import {
   StyleSheet,
 } from 'react-native';
 import Home from './components/Home';
+import Blogs from './components/Blogs';
+
 
 function App(): JSX.Element {
   return (
-    <Home/>
+    <Blogs/>
   );
 }
 

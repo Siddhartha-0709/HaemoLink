@@ -13,6 +13,8 @@
     "@anatoliygatt/heart-switch": "^1.0.13",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@react-navigation/native": "^6.1.7",
+    "@react-navigation/stack": "^6.3.17",
     "react": "18.2.0",
     "react-native": "0.72.3",
     "react-native-paper": "^5.10.0",
