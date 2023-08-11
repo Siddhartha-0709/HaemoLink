@@ -8,14 +8,14 @@ import {
   Image,
 } from 'react-native';
 import React from 'react';
-import BottomNav from './BottomNav';
-const Home = () => {
+
+const Home= ({navigation}) => {
   return (
     <SafeAreaView style={styles.background}>
       <StatusBar backgroundColor={'#FFF0F5'} barStyle={'dark-content'} />
       <View>
         <Image
-          source={require('../components/assets/blood.png')}
+          source={require('../assets/blood.png')}
           style={styles.topBar1}
         />
       </View>
@@ -27,7 +27,7 @@ const Home = () => {
         </Text>
         <View style={styles.imageContainer}>
           <Image
-            source={require('../components/assets/donor_male.png')}
+            source={require('../assets/donor_male.png')}
             style={styles.displayPic}
           />
         </View>
@@ -36,11 +36,11 @@ const Home = () => {
         <Text style={styles.email}>{'@sidd_myself'}</Text>
         <Text style={styles.bloodGroup}>
           🩸{'O⁺ve'} | <Image
-          source={require('../components/assets/age.png')}
+          source={require('../assets/age.png')}
           style={{width:20,height:20}}
           /> 19+
           <Text> | <Image
-          source={require('../components/assets/pin.png')}
+          source={require('../assets/pin.png')}
           style={{width:20,height:20}}
           />Kolkata, India</Text>
         </Text>
@@ -48,7 +48,7 @@ const Home = () => {
       <View>
         <TouchableOpacity style={styles.map}>
           <Image
-          source={require('../components/assets/maps_button1.png')}
+          source={require('../assets/maps_button1.png')}
           style={{width:372, borderRadius:40,height:160}}
           />
         </TouchableOpacity>
@@ -56,13 +56,13 @@ const Home = () => {
       <View style={styles.container}>
         <TouchableOpacity style={styles.view1}>
         <Image
-          source={require('../components/assets/find_donor3.png')}
+          source={require('../assets/find_donor3.png')}
           style={{width:170, borderRadius:5,height:170,marginLeft:6}}
           />
         </TouchableOpacity>
         <TouchableOpacity style={styles.view2}>
         <Image
-          source={require('../components/assets/emergency5.png')}
+          source={require('../assets/emergency5.png')}
           style={{width:170, borderRadius:5,height:170,marginLeft:2}}
           />
         </TouchableOpacity>
@@ -70,12 +70,11 @@ const Home = () => {
       <View>
         <TouchableOpacity style={styles.camp}>
           <Image
-          source={require('../components/assets/blood_camp2.png')}
+          source={require('../assets/blood_camp2.png')}
           style={{width:372, borderRadius:5,height:150}}
           />
         </TouchableOpacity>
       </View>
-      <BottomNav/>
     </SafeAreaView>
   );
 };

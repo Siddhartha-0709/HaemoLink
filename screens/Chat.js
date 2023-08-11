@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const MapsBloodBank = () => {
+const Chat = () => {
   return (
     <View>
-      <Text>MapsBloodBank</Text>
+      <Text>Chat</Text>
     </View>
   )
 }
 
-export default MapsBloodBank
+export default Chat
 
 const styles = StyleSheet.create({})
