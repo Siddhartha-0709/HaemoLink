@@ -1,79 +1,29 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+HaemoLink - Pre-release Version
 
-# Getting Started
+Welcome to HaemoLink, a revolutionary app designed to bridge the gap between blood donors and those in need. This pre-release version offers a glimpse into the powerful features that will redefine the way we approach blood donation.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+Key Features:
 
-## Step 1: Start the Metro Server
+Live Location Tracking: HaemoLink fetches the user's live location, providing real-time information to enhance the blood donation experience.
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+Blood Bank Locator: Seamlessly integrated with maps services, HaemoLink identifies and displays nearby blood banks, ensuring users can quickly locate the nearest facility in times of need.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+Upcoming Blood Donation Camps: Stay informed about upcoming blood donation camps in your vicinity. HaemoLink provides detailed information about these events, including date, time, and location, empowering users to contribute to this noble cause.
 
-```bash
-# using npm
-npm start
+Donor Directory: Access a comprehensive list of donors who are ready to contribute. HaemoLink fosters a community of caring individuals willing to make a difference by providing life-saving blood donations.
 
-# OR using Yarn
-yarn start
-```
+Current Status:
 
-## Step 2: Start your Application
+While HaemoLink boasts powerful functionality, it's essential to note that this version is in the pre-release stage. The development team is actively addressing UI issues to enhance the user experience. Functionalities are robust, but comprehensive testing is ongoing to ensure a flawless performance when the app reaches its final release.
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+How You Can Contribute:
 
-### For Android
+As we work towards the official launch, your feedback is invaluable. Test the app, explore its features, and let us know about any glitches, UI concerns, or suggestions you may have. Your input will play a crucial role in refining HaemoLink and making it the go-to platform for blood donation information.
 
-```bash
-# using npm
-npm run android
+Join us on this Journey:
 
-# OR using Yarn
-yarn android
-```
+HaemoLink is more than an app; it's a movement towards a healthier and more connected community. Join us on this journey, and together, let's make a lasting impact on the world of blood donation.
 
-### For iOS
+Thank you for being a part of HaemoLink's pre-release phase. Your support is instrumental in bringing this vision to life.
 
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
-
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Note: Please be aware that this version is not the final release, and certain features and improvements are still in progress.
