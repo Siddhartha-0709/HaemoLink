@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,114 +8,91 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import React from 'react';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import axios from 'axios';
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigation } from '@react-navigation/native'; 
+
 const Blogs = () => {
-  const serverURL = 'http://152.58.166.24/blogs';
+  const serverURL = 'https://haemolink.cyclic.app/blogs';
   const [arrayOfObjects, setArrayOfObjects] = useState([]);
+
   useEffect(() => {
     axios
       .get(serverURL)
       .then(response => {
-        setArrayOfObjects(response.data); 
+        setArrayOfObjects(response.data);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
       });
   }, []);
+  const handleBlogPress = (obj) => {
+    setSelectedBlog(obj);
+  };
   const getGoogleDriveImageUrl = imageId => {
     return `https://drive.google.com/uc?id=${imageId}`;
   };
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.background}>
       <StatusBar backgroundColor={'#FFF0F5'} barStyle={'dark-content'} />
-      <View>
-        <View>
-          <Text style={styles.heading}>Explore </Text>
-        </View>
-        <View></View>
-        <View>
-          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            <View style={styles.item}></View>
-            <View style={styles.item}></View>
-            <View style={styles.item}></View>
-            <View style={styles.item}></View>
-          </ScrollView>
-        </View>
-        <View style={styles.verticalScroll}>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          {arrayOfObjects.map((obj, index) => (
-            <TouchableOpacity key={obj._id} style={styles.blogPostCard}>
-                <Image
-                  source={{uri: getGoogleDriveImageUrl(obj.image)}}
-                  style={{width: 400, height: 200}}
-                />
-                <Text style={[styles.blogPostCardText, {textAlign: 'left'}]}>
-                  {obj.heading}
-                </Text>
+      <View style={styles.container}>
+        <Text style={styles.heading}>Explore</Text>
+        <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
+          {arrayOfObjects.map(obj => (
+            <TouchableOpacity key={obj._id} style={styles.blogPostCard}
+            onPress={() => navigation.navigate('BlogDetails', { selectedBlog: obj })}
+            >
+              <Image
+                source={{ uri: getGoogleDriveImageUrl(obj.image) }}
+                style={styles.blogImage}
+              />
+              <Text style={styles.blogPostCardText}>{obj.heading}</Text>
             </TouchableOpacity>
           ))}
         </ScrollView>
-        </View>
       </View>
     </SafeAreaView>
   );
 };
-
-export default Blogs;
-
 const styles = StyleSheet.create({
-  scrollView: {
-    flexDirection: 'row', 
-    padding: 10,
-  },
-  topBar1: {
-    width: 40,
-    height: 40,
-    marginHorizontal: 175,
+  scroll:{
+    height:770
   },
   background: {
-    backgroundColor: '#FAF3F0',
-    height: '100%',
-    padding: 8,
+    backgroundColor: '#FFF0F5',
+    flex: 1,
+  },
+  container: {
+    padding: 13,
   },
   heading: {
     color: '#000000',
     fontSize: 40,
     fontWeight: '700',
-  },
-  horizontalScroll: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 7,
-    paddingVertical: 6,
-  },
-  item: {
-    width: 150, // Adjust the width as needed
-    height: 150,
-    backgroundColor: '#e0e0e0',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 10,
-    borderRadius: 5,
+    marginBottom: 16,
   },
   blogPostCard: {
-    marginTop: 10,
-    backgroundColor: '#e0e0e0',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 5,
-    padding: 0,
+    backgroundColor: '#ffffff',
+    borderRadius: 10,
+    marginBottom: 16,
+    elevation: 3, 
+  },
+  blogImage: {
+    height: 200,
+    width: '100%',
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    borderBottomLeftRadius:10,
+    borderBottomRightRadius:10,
   },
   blogPostCardText: {
     color: '#000000',
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: '500',
-    textAlign: 'left',
+    marginVertical: 12,
+    marginHorizontal: 3,
   },
-  verticalScroll:{
-    height:800
-  }
 });
+export default Blogs;

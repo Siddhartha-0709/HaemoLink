@@ -6,10 +6,111 @@ import {
   TouchableOpacity,
   StatusBar,
   Image,
+  PermissionsAndroid,
 } from 'react-native';
 import React from 'react';
+import {useState, useEffect} from 'react';
+import Geolocation from 'react-native-geolocation-service';
+import firebase from '@react-native-firebase/app';
+import '@react-native-firebase/database';
 
-const Home= ({navigation}) => {
+const requestLocationPermission = async () => {
+  try {
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+      {
+        title: 'Geolocation Permission',
+        message: 'Can we access your location?',
+        buttonNeutral: 'Ask Me Later',
+        buttonNegative: 'Cancel',
+        buttonPositive: 'OK',
+      },
+    );
+    console.log('granted', granted);
+    if (granted === 'granted') {
+      console.log('You can use Geolocation');
+      return true;
+    } else {
+      console.log('You cannot use Geolocation');
+      return false;
+    }
+  } catch (err) {
+    return false;
+  }
+};
+
+
+const Home= ({navigation,route}) => {
+  const userDetails = route.params;
+  console.log('Users=',userDetails);
+  const [donors, setDonors] = useState('not available');
+  const [location, setLocation] = useState(false);
+  const [latitude, setLatitude] = useState(0);
+  const [longitude, setLongitude] = useState(0);
+  const getLocation = async () => {
+    const result = requestLocationPermission();
+    result.then(res => {
+      console.log('res is:', res);
+      if (res) {
+        Geolocation.getCurrentPosition(
+          position => {
+            console.log(position.coords);
+            setLocation(position);
+            setLatitude(position.coords.latitude);
+            setLongitude(position.coords.longitude);
+          },
+          error => {
+            // See error code charts below.
+            console.log(error.code, error.message);
+            setLocation(false);
+          },
+          {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
+        );
+      }
+    });
+  };
+  const handleSetDonors = async ()=>{
+    try {
+      const database = firebase.database();
+      const usersRef = database.ref('users-list');
+  
+      // Fetch the data once
+      const snapshot = await usersRef.once('value');
+  
+      // Check if data exists
+      if (snapshot.exists()) {
+        const users = snapshot.val();
+        setDonors(users);
+        console.log('All Users:', users);
+      } else {
+        console.log('No users found.');
+      }
+    } catch (error) {
+      console.error('Error fetching users:', error.message);
+    }
+  }
+  useEffect(() => {
+    getLocation();
+    handleSetDonors();
+  }, []);
+  
+  const handleButtonPressMaps = ()=>{
+    console.log('Latitude-  '+ latitude);
+    console.log('Longitude-  '+ longitude);
+    navigation.navigate('BloodBanks',{latitude,longitude},{navigation});
+  }
+  const handleReadBlogs =()=>{
+    navigation.navigate('Blogs')
+  }
+  const handleEmergencyPress = ()=>{
+    navigation.navigate('Emergency',{latitude,longitude},{navigation});
+  }
+  const handleOpenBloodCamps =()=>{
+    navigation.navigate('BloodCamps');
+  }
+  const handleFindADonorPress = ()=>{
+    navigation.navigate('Donors',{donors});
+  }
   return (
     <SafeAreaView style={styles.background}>
       <StatusBar backgroundColor={'#FFF0F5'} barStyle={'dark-content'} />
@@ -23,7 +124,7 @@ const Home= ({navigation}) => {
         <Text style={styles.heading}>
           Hello,
           {'\n'}
-          {'Siddhartha'}
+          {userDetails.userData.firstName}
         </Text>
         <View style={styles.imageContainer}>
           <Image
@@ -33,42 +134,48 @@ const Home= ({navigation}) => {
         </View>
       </View>
       <View>
-        <Text style={styles.email}>{'@sidd_myself'}</Text>
+        <Text style={styles.email}>+91 {userDetails.userData.phoneNumber}</Text>
         <Text style={styles.bloodGroup}>
-          🩸{'O⁺ve'} | <Image
+          🩸{userDetails.userData.bloodGroup} | <Image
           source={require('../assets/age.png')}
           style={{width:20,height:20}}
-          /> 19+
+          /> {userDetails.userData.age}+
           <Text> | <Image
           source={require('../assets/pin.png')}
           style={{width:20,height:20}}
-          />Kolkata, India</Text>
+          />{userDetails.userData.selectedState}</Text>
         </Text>
       </View>
       <View>
-        <TouchableOpacity style={styles.map}>
-          <Image
+        <TouchableOpacity style={styles.map}
+        onPress={handleButtonPressMaps}
+        >
+        <Image
           source={require('../assets/maps_button1.png')}
-          style={{width:372, borderRadius:40,height:160}}
-          />
+          style={{width:378, borderRadius:40,height:160}}
+        />
         </TouchableOpacity>
       </View>
       <View style={styles.container}>
-        <TouchableOpacity style={styles.view1}>
+        <TouchableOpacity style={styles.view1} onPress={handleFindADonorPress}>
         <Image
           source={require('../assets/find_donor3.png')}
           style={{width:170, borderRadius:5,height:170,marginLeft:6}}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.view2}>
+        <TouchableOpacity style={styles.view2}
+        onPress={handleReadBlogs}
+        >
         <Image
-          source={require('../assets/emergency5.png')}
+          source={require('../assets/blogs_icon.png')}
           style={{width:170, borderRadius:5,height:170,marginLeft:2}}
           />
         </TouchableOpacity>
       </View>
       <View>
-        <TouchableOpacity style={styles.camp}>
+        <TouchableOpacity style={styles.camp}
+        onPress={handleOpenBloodCamps}
+        >
           <Image
           source={require('../assets/blood_camp2.png')}
           style={{width:372, borderRadius:5,height:150}}
@@ -166,10 +273,10 @@ const styles = StyleSheet.create({
     marginHorizontal:10,
     backgroundColor: '#FFFFFF',
     height:160,
-    width:372,
     margin: 10,
     borderRadius: 8,
     elevation: 8,
+    marginTop:40
   },
   camp: {
     backgroundColor: '#FFFFFF',

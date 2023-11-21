@@ -5,6 +5,16 @@ import Home from '../screens/Home';
 import Blogs from '../screens/Blogs';
 import Chat from '../screens/Chat';
 import Profile from '../screens/Profile';
+import BlogDetails from '../screens/BlogDetails';
+
+import BloodBanks from '../screens/BloodBanks'
+import NavigationMap from '../screens/NavigationMap'
+import Emergency from '../screens/Emergency';
+import BloodCamps from '../screens/BloodCamps';
+import Login from '../screens/Login';
+import Signup from '../screens/Signup';
+import Donors from '../screens/Donors';
+import Splash from '../screens/Splash';
 const Tab = createBottomTabNavigator();
 const BottomNav = () => {
   return (
@@ -17,8 +27,57 @@ const BottomNav = () => {
           backgroundColor: '#ffffff',
           borderRadius: 15,
           ...styles.shadow,
+          height:0
         },
       }}>
+      <Tab.Screen
+        name="Splash"
+        component={Splash}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <View>
+              <Image
+                source={require('../assets/home.png')}
+                style={styles.icon}
+              />
+            </View>
+          ),
+          tabBarButton: () => null, // Hide the tab button
+
+        }}
+      />
+      <Tab.Screen
+        name="Signup"
+        component={Signup}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <View>
+              <Image
+                source={require('../assets/home.png')}
+                style={styles.icon}
+              />
+            </View>
+          ),
+          tabBarButton: () => null, // Hide the tab button
+
+        }}
+      />
+      <Tab.Screen
+        name="Login"
+        component={Login}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <View>
+              <Image
+                source={require('../assets/home.png')}
+                style={styles.icon}
+              />
+            </View>
+          ),
+          tabBarButton: () => null, // Hide the tab button
+
+        }}
+      />
       <Tab.Screen
         name="Home"
         component={Home}
@@ -31,6 +90,8 @@ const BottomNav = () => {
               />
             </View>
           ),
+          tabBarButton: () => null, // Hide the tab button
+
         }}
       />
       <Tab.Screen name="Blogs" component={Blogs}
@@ -43,6 +104,36 @@ const BottomNav = () => {
             />
           </View>
         ),
+        tabBarButton: () => null, // Hide the tab button
+
+      }}
+      />
+      <Tab.Screen name="Emergency" component={Emergency}
+      options={{
+        tabBarIcon: ({focused}) => (
+          <View>
+            <Image
+              source={require('../assets/book.png')}
+              style={styles.icon}
+            />
+          </View>
+        ),
+        tabBarButton: () => null, // Hide the tab button
+
+      }}
+      />
+      <Tab.Screen name="BloodCamps" component={BloodCamps}
+      options={{
+        tabBarIcon: ({focused}) => (
+          <View>
+            <Image
+              source={require('../assets/book.png')}
+              style={styles.icon}
+            />
+          </View>
+        ),
+        tabBarButton: () => null, // Hide the tab button
+
       }}
       />
       <Tab.Screen name="Chat" component={Chat} 
@@ -55,47 +146,45 @@ const BottomNav = () => {
             />
           </View>
         ),
+        tabBarButton: () => null, // Hide the tab button
+
       }}
       />
       <Tab.Screen name="Profile" component={Profile} 
       options={{
-        tabBarIcon: ({focused}) => (
-          <View>
-            <Image
-              source={require('../assets/user.png')}
-              style={styles.icon}
-            />
-          </View>
-        ),
+        // tabBarIcon: ({focused}) => (
+        //   <View>
+        //     <Image
+        //       source={require('../assets/user.png')}
+        //       style={styles.icon}
+        //     />
+        //   </View>
+        // ),
+        tabBarButton: () => null, // Hide the tab button
+
       }}
       />
+    <Tab.Screen name="BlogDetails" component={BlogDetails} 
+      options={{
+        tabBarButton: () => null, // Hide the tab button
+      }}
+    />
+    <Tab.Screen name="BloodBanks" component={BloodBanks} 
+      options={{
+        tabBarButton: () => null, // Hide the tab button
+      }}
+    />
+    <Tab.Screen name="NavigationMap" component={NavigationMap} 
+      options={{
+        tabBarButton: () => null, // Hide the tab button
+      }}
+    />
+    <Tab.Screen name="Donors" component={Donors} 
+      options={{
+        tabBarButton: () => null, // Hide the tab button
+      }}
+    />
     </Tab.Navigator>
-    // <View style={styles.bottomNav}>
-    //   <Pressable onPress={goToHome}>
-    //     <Image
-    //       source={require('../components/assets/home.png')}
-    //       style={styles.icon}
-    //     />
-    //   </Pressable>
-    //   <Pressable onPress={goToChat}>
-    //     <Image
-    //       source={require('../components/assets/chat.png')}
-    //       style={styles.icon}
-    //     />
-    //   </Pressable>
-    //   <Pressable onPress={goToBlogs}>
-    //     <Image
-    //       source={require('../components/assets/book.png')}
-    //       style={styles.icon}
-    //     />
-    //   </Pressable>
-    //   <Pressable onPress={goToAccount}>
-    //     <Image
-    //       source={require('../components/assets/user.png')}
-    //       style={styles.icon}
-    //     />
-    //   </Pressable>
-    // </View>
   );
 };
 
